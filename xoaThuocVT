@@ -1,0 +1,10 @@
+fetch("http://daotao.gpp.com.vn/api/services/app/hangHoa/GetAllHangHoaServerPaging", {"credentials":"include","headers":{"accept":"application/json, text/plain, */*","accept-language":"en-US,en;q=0.9,vi;q=0.8","content-type":"application/json;charset=UTF-8","x-xsrf-token":"4-efaRSEH2ZWFa-uc1tzMc-0tDSIUaDB7iYgbK1umn7zaL5icnYWejeevHjNwqjOmZVmb6mYNOQqxRLd4Vm4EQT2QOe36cIQXB9XKnvPnrQQQ-zwnhDyGP6HgA1OPWy-D_5_uNWOldXTmdp-v6UNTw2"},"referrer":"http://daotao.gpp.com.vn/Application/Index","referrerPolicy":"no-referrer-when-downgrade","body":"{\"LoaiHangHoa\":\"\",\"NhomHangHoa\":\"\",\"Filter\":\"\",\"IsActive\":true,\"sNhomHangHoa\":\"\",\"skipCount\":0,\"maxResultCount\":1000}","method":"POST","mode":"cors"})
+.then(res=>res.json())
+.then(res=>{
+res.result.items.forEach(async (item,index)=>{
+if(!item.tongHopGiaVon){
+await fetch(`http://daotao.gpp.com.vn/api/services/app/hangHoa/InactiveHangHoa?id=${item.id}`, {"credentials":"include","headers":{"accept":"application/json, text/plain, */*","accept-language":"en-US,en;q=0.9,vi;q=0.8","content-type":"application/json;charset=UTF-8","x-xsrf-token":"4-efaRSEH2ZWFa-uc1tzMc-0tDSIUaDB7iYgbK1umn7zaL5icnYWejeevHjNwqjOmZVmb6mYNOQqxRLd4Vm4EQT2QOe36cIQXB9XKnvPnrQQQ-zwnhDyGP6HgA1OPWy-D_5_uNWOldXTmdp-v6UNTw2"},"referrer":"http://daotao.gpp.com.vn/Application/Index","referrerPolicy":"no-referrer-when-downgrade","body":"{}","method":"POST","mode":"cors"})
+console.log(item.id,index)
+}
+})
+})
